@@ -7,8 +7,6 @@ import org.joda.time.format.DateTimeFormat
 import org.joda.time.format.DateTimeFormatter
 import org.joda.time.DateTimeZone
 import java.util.Date
-import scala.Some
-
 
 trait Remote extends Controller {
 
@@ -17,7 +15,7 @@ trait Remote extends Controller {
   private val df: DateTimeFormatter =
     DateTimeFormat.forPattern("EEE, dd MMM yyyy HH:mm:ss '"+timeZoneCode+"'").withLocale(java.util.Locale.ENGLISH).withZone(DateTimeZone.forID(timeZoneCode))
 
-  type ResultWithHeaders = SimpleResult { def withHeaders(headers: (String, String)*): SimpleResult }
+  type ResultWithHeaders = Result { def withHeaders(headers: (String, String)*): Result }
 
   def at(path: String, file: String): Action[AnyContent] = Action { request =>
     val action = Assets.at(path, file)
@@ -36,3 +34,4 @@ trait Remote extends Controller {
 
   def call(file: String): Call
 }
+
