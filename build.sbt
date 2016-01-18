@@ -9,3 +9,7 @@ organization := "mchv"
 
 scalaVersion := "2.11.4"
 
+publishTo := Some(Resolver.file(
+  "file", file(Option(System.getProperty("repository.path")).getOrElse("/tmp"))
+))
+
